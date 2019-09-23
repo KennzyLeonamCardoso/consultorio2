@@ -12,6 +12,8 @@ import java.util.Set;
 
 import com.mycompany.myapp.domain.enumeration.TipoProcedimento;
 
+import com.mycompany.myapp.domain.enumeration.TipoPagamento;
+
 /**
  * A Consulta.
  */
@@ -32,6 +34,10 @@ public class Consulta implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_procedimento")
     private TipoProcedimento tipoProcedimento;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_pagamento")
+    private TipoPagamento tipoPagamento;
 
     @ManyToOne
     @JsonIgnoreProperties("consultas")
@@ -81,6 +87,19 @@ public class Consulta implements Serializable {
 
     public void setTipoProcedimento(TipoProcedimento tipoProcedimento) {
         this.tipoProcedimento = tipoProcedimento;
+    }
+
+    public TipoPagamento getTipoPagamento() {
+        return tipoPagamento;
+    }
+
+    public Consulta tipoPagamento(TipoPagamento tipoPagamento) {
+        this.tipoPagamento = tipoPagamento;
+        return this;
+    }
+
+    public void setTipoPagamento(TipoPagamento tipoPagamento) {
+        this.tipoPagamento = tipoPagamento;
     }
 
     public Pagamento getPagamento() {
@@ -169,6 +188,7 @@ public class Consulta implements Serializable {
             "id=" + getId() +
             ", dataConsulta='" + getDataConsulta() + "'" +
             ", tipoProcedimento='" + getTipoProcedimento() + "'" +
+            ", tipoPagamento='" + getTipoPagamento() + "'" +
             "}";
     }
 }

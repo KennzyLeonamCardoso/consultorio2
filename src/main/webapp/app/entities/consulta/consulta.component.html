@@ -20,6 +20,7 @@
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="consultorio2App.consulta.dataConsulta">Data Consulta</span></th>
             <th><span jhiTranslate="consultorio2App.consulta.tipoProcedimento">Tipo Procedimento</span></th>
+            <th><span jhiTranslate="consultorio2App.consulta.tipoPagamento">Tipo Pagamento</span></th>
             <th><span jhiTranslate="consultorio2App.consulta.pagamento">Pagamento</span></th>
             <th><span jhiTranslate="consultorio2App.consulta.pessoa">Pessoa</span></th>
             <th></th>
@@ -30,6 +31,7 @@
                 <td><a [routerLink]="['/consulta', consulta.id, 'view' ]">{{consulta.id}}</a></td>
                 <td>{{consulta.dataConsulta | date:'medium'}}</td>
                 <td jhiTranslate="{{'consultorio2App.TipoProcedimento.' + consulta.tipoProcedimento}}">{{consulta.tipoProcedimento}}</td>
+                <td jhiTranslate="{{'consultorio2App.TipoPagamento.' + consulta.tipoPagamento}}">{{consulta.tipoPagamento}}</td>
                 <td>
                     <div *ngIf="consulta.pagamento">
                         <a [routerLink]="['/pagamento', consulta.pagamento?.id, 'view' ]" >{{consulta.pagamento?.id}}</a>

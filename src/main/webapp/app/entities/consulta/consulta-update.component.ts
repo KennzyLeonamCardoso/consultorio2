@@ -31,6 +31,7 @@ export class ConsultaUpdateComponent implements OnInit {
     id: [],
     dataConsulta: [],
     tipoProcedimento: [],
+    tipoPagamento: [],
     pagamento: [],
     pessoas: []
   });
@@ -70,6 +71,7 @@ export class ConsultaUpdateComponent implements OnInit {
       id: consulta.id,
       dataConsulta: consulta.dataConsulta != null ? consulta.dataConsulta.format(DATE_TIME_FORMAT) : null,
       tipoProcedimento: consulta.tipoProcedimento,
+      tipoPagamento: consulta.tipoPagamento,
       pagamento: consulta.pagamento,
       pessoas: consulta.pessoas
     });
@@ -96,6 +98,7 @@ export class ConsultaUpdateComponent implements OnInit {
       dataConsulta:
         this.editForm.get(['dataConsulta']).value != null ? moment(this.editForm.get(['dataConsulta']).value, DATE_TIME_FORMAT) : undefined,
       tipoProcedimento: this.editForm.get(['tipoProcedimento']).value,
+      tipoPagamento: this.editForm.get(['tipoPagamento']).value,
       pagamento: this.editForm.get(['pagamento']).value,
       pessoas: this.editForm.get(['pessoas']).value
     };
