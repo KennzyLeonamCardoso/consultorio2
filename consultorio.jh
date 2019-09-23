@@ -9,7 +9,8 @@ entity Pessoa{
 }
 entity Consulta{
       dataConsulta ZonedDateTime,
-      tipoProcedimento TipoProcedimento
+      tipoProcedimento TipoProcedimento,
+      tipoPagamento TipoPagamento
 }
 entity Funcionario{
       numeroRegistro Integer,

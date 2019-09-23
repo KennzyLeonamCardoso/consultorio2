@@ -6,6 +6,7 @@ import { DATE_TIME_FORMAT } from 'app/shared/constants/input.constants';
 import { ConsultaService } from 'app/entities/consulta/consulta.service';
 import { IConsulta, Consulta } from 'app/shared/model/consulta.model';
 import { TipoProcedimento } from 'app/shared/model/enumerations/tipo-procedimento.model';
+import { TipoPagamento } from 'app/shared/model/enumerations/tipo-pagamento.model';
 
 describe('Service Tests', () => {
   describe('Consulta Service', () => {
@@ -25,7 +26,7 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new Consulta(0, currentDate, TipoProcedimento.LIMPEZA);
+      elemDefault = new Consulta(0, currentDate, TipoProcedimento.LIMPEZA, TipoPagamento.AVISTA);
     });
 
     describe('Service methods', () => {
@@ -73,7 +74,8 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             dataConsulta: currentDate.format(DATE_TIME_FORMAT),
-            tipoProcedimento: 'BBBBBB'
+            tipoProcedimento: 'BBBBBB',
+            tipoPagamento: 'BBBBBB'
           },
           elemDefault
         );
@@ -97,7 +99,8 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             dataConsulta: currentDate.format(DATE_TIME_FORMAT),
-            tipoProcedimento: 'BBBBBB'
+            tipoProcedimento: 'BBBBBB',
+            tipoPagamento: 'BBBBBB'
           },
           elemDefault
         );

@@ -9,6 +9,11 @@
             "fieldName": "tipoProcedimento",
             "fieldType": "TipoProcedimento",
             "fieldValues": "LIMPEZA,OBTURACAO,EXTRACAO"
+        },
+        {
+            "fieldName": "tipoPagamento",
+            "fieldType": "TipoPagamento",
+            "fieldValues": "AVISTA,PLANOSAUDE"
         }
     ],
     "relationships": [

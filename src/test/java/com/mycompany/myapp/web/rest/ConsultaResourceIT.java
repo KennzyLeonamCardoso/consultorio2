@@ -38,6 +38,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.mycompany.myapp.domain.enumeration.TipoProcedimento;
+import com.mycompany.myapp.domain.enumeration.TipoPagamento;
 /**
  * Integration tests for the {@link ConsultaResource} REST controller.
  */
@@ -50,6 +51,9 @@ public class ConsultaResourceIT {
 
     private static final TipoProcedimento DEFAULT_TIPO_PROCEDIMENTO = TipoProcedimento.LIMPEZA;
     private static final TipoProcedimento UPDATED_TIPO_PROCEDIMENTO = TipoProcedimento.OBTURACAO;
+
+    private static final TipoPagamento DEFAULT_TIPO_PAGAMENTO = TipoPagamento.AVISTA;
+    private static final TipoPagamento UPDATED_TIPO_PAGAMENTO = TipoPagamento.PLANOSAUDE;
 
     @Autowired
     private ConsultaRepository consultaRepository;
@@ -97,7 +101,8 @@ public class ConsultaResourceIT {
     public static Consulta createEntity(EntityManager em) {
         Consulta consulta = new Consulta()
             .dataConsulta(DEFAULT_DATA_CONSULTA)
-            .tipoProcedimento(DEFAULT_TIPO_PROCEDIMENTO);
+            .tipoProcedimento(DEFAULT_TIPO_PROCEDIMENTO)
+            .tipoPagamento(DEFAULT_TIPO_PAGAMENTO);
         return consulta;
     }
     /**
@@ -109,7 +114,8 @@ public class ConsultaResourceIT {
     public static Consulta createUpdatedEntity(EntityManager em) {
         Consulta consulta = new Consulta()
             .dataConsulta(UPDATED_DATA_CONSULTA)
-            .tipoProcedimento(UPDATED_TIPO_PROCEDIMENTO);
+            .tipoProcedimento(UPDATED_TIPO_PROCEDIMENTO)
+            .tipoPagamento(UPDATED_TIPO_PAGAMENTO);
         return consulta;
     }
 
@@ -135,6 +141,7 @@ public class ConsultaResourceIT {
         Consulta testConsulta = consultaList.get(consultaList.size() - 1);
         assertThat(testConsulta.getDataConsulta()).isEqualTo(DEFAULT_DATA_CONSULTA);
         assertThat(testConsulta.getTipoProcedimento()).isEqualTo(DEFAULT_TIPO_PROCEDIMENTO);
+        assertThat(testConsulta.getTipoPagamento()).isEqualTo(DEFAULT_TIPO_PAGAMENTO);
     }
 
     @Test
@@ -169,7 +176,8 @@ public class ConsultaResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(consulta.getId().intValue())))
             .andExpect(jsonPath("$.[*].dataConsulta").value(hasItem(sameInstant(DEFAULT_DATA_CONSULTA))))
-            .andExpect(jsonPath("$.[*].tipoProcedimento").value(hasItem(DEFAULT_TIPO_PROCEDIMENTO.toString())));
+            .andExpect(jsonPath("$.[*].tipoProcedimento").value(hasItem(DEFAULT_TIPO_PROCEDIMENTO.toString())))
+            .andExpect(jsonPath("$.[*].tipoPagamento").value(hasItem(DEFAULT_TIPO_PAGAMENTO.toString())));
     }
     
     @SuppressWarnings({"unchecked"})
@@ -217,7 +225,8 @@ public class ConsultaResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(consulta.getId().intValue()))
             .andExpect(jsonPath("$.dataConsulta").value(sameInstant(DEFAULT_DATA_CONSULTA)))
-            .andExpect(jsonPath("$.tipoProcedimento").value(DEFAULT_TIPO_PROCEDIMENTO.toString()));
+            .andExpect(jsonPath("$.tipoProcedimento").value(DEFAULT_TIPO_PROCEDIMENTO.toString()))
+            .andExpect(jsonPath("$.tipoPagamento").value(DEFAULT_TIPO_PAGAMENTO.toString()));
     }
 
     @Test
@@ -242,7 +251,8 @@ public class ConsultaResourceIT {
         em.detach(updatedConsulta);
         updatedConsulta
             .dataConsulta(UPDATED_DATA_CONSULTA)
-            .tipoProcedimento(UPDATED_TIPO_PROCEDIMENTO);
+            .tipoProcedimento(UPDATED_TIPO_PROCEDIMENTO)
+            .tipoPagamento(UPDATED_TIPO_PAGAMENTO);
 
         restConsultaMockMvc.perform(put("/api/consultas")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -255,6 +265,7 @@ public class ConsultaResourceIT {
         Consulta testConsulta = consultaList.get(consultaList.size() - 1);
         assertThat(testConsulta.getDataConsulta()).isEqualTo(UPDATED_DATA_CONSULTA);
         assertThat(testConsulta.getTipoProcedimento()).isEqualTo(UPDATED_TIPO_PROCEDIMENTO);
+        assertThat(testConsulta.getTipoPagamento()).isEqualTo(UPDATED_TIPO_PAGAMENTO);
     }
 
     @Test
